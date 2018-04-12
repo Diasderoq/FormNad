@@ -1,0 +1,963 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="javascript.js"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+	<h1>
+		<p>
+		    <input type=image class="form-group" src="logo.png" align="middle" width="130" height="100" name="logo">
+		    NAD e NCL
+		</p>
+	</h1>
+	
+	<input type="hidden" id="TIPO" name="TIPO">
+	<input type="hidden" id="Requerente" name="Requerente">
+	<input type="hidden" id="AtivAtual" name="AtivAtual">
+	<input type="hidden" id="AtivDest" name="AtivDest">
+	<input type="hidden" id="SubCategoriaExame" name="SubCategoriaExame">
+	<input type="hidden" id="HddMedicoEmailNcl" name="HddMedicoEmailNcl">
+	<input type="hidden" id="HddMedicoEmailNadCom" name="HddMedicoEmailNadCom">
+	
+	<input type="hidden" id="mail" name="mail">
+	
+	
+	<input type="hidden" id="HouveTrocadeImagem" name="HouveTrocadeImagem">
+	
+	
+	
+	
+	
+	
+	 <ul class="nav nav-tabs" role="tablist">
+	    <li class="active">
+	    	<a href="#Solicitante" role="tab" data-toggle="tab">
+	    		Solicitação
+	    	</a>
+	    </li>	    
+	    <li>
+	    	<a href="#Medica" role="tab" data-toggle="tab">
+	    		Area Medica
+	    	</a>
+	    </li>
+	    <li id="liAprov">
+	    	<a  href="#CoordMedica" role="tab" data-toggle="tab" >
+	    		Coordenação Medica
+	    	</a>
+	    </li>
+	 </ul>
+	
+	
+	
+	
+<div class="tab-content">
+	<div class="tab-pane active" id="Solicitante" >  	
+		<div class="col-md-10 col-md-offset-1">
+			
+				<div class="row">			
+						<div class="col-md-3" id="1"> 
+							<label>
+								Exame já possui laudo ?<span class="required text-danger"><strong>*</strong></span>
+							</label>
+							<div class="radio">
+								
+								<div class="radio">
+							    	<label>
+							    		<input type="radio" name="RdExamejaPossuiLaudo" id="RdExamejaPossuiLaudoSim" value="sim" >
+							    		Sim
+							    	</label>
+							    </div>
+							    <div class="radio">
+							    	<label>
+							    		<input type="radio" name="RdExamejaPossuiLaudo" id="RdExamejaPossuiLaudoNao" value="nao">
+							    			Não
+							    	</label>
+							  </div>  
+						    </div>
+						 </div>
+						 
+						 <div class="col-md-9" id="2"> 
+							<label>
+								Laudo já foi visto pelo medico ou pelo paciente? Exame foi entregue?<span class="required text-danger"><strong>*</strong></span>
+							</label>
+							<div class="radio">
+								
+								<div class="radio">
+							    	<label>
+							    		<input type="radio" name="RdLaudoJaFoiVisto" id="RdLaudoJaFoiVistoSim" value="sim" >
+							    		Sim
+							    	</label>
+							    </div>
+							    <div class="radio">
+							    	<label>
+							    		<input type="radio" name="RdLaudoJaFoiVisto" id="RdLaudoJaFoiVistoNao" value="nao">
+							    			Não
+							    	</label>
+							  </div>  
+						    </div>
+						 </div>
+				</div>
+				
+				<div class="panel panel-default"  id="A" name="A">
+					<div class="panel-heading">NAD Com Laudo</div>
+					<div class="panel-body"> 
+						<div class="row">
+							<div class="col-md-4">
+								<label>
+									Notificante<span class="required text-danger"><strong>*</strong></span>
+								</label>
+								<input type="text" class="form-control" id="TxtNotificante" name="TxtNotificante" maxlength=50>
+							</div>
+							<div class="col-md-2">
+								<label>
+									RE<span class="required text-danger"><strong>*</strong></span>
+								</label>
+								<input type="text" class="form-control" id="TxtRE" name="TxtRE" mask="00000">
+							</div>
+							<div class="col-md-2">
+								<label>
+									Telefone<span class="required text-danger"><strong>*</strong></span>
+								</label>
+								<input type="text" class="form-control" id="TxtTelefone" name="TxtTelefone" mask="(00) 0000-0000">
+							</div>
+							
+							<div class="col-md-4">
+								<label>
+									Unidade<span class="required text-danger"><strong>*</strong></span>
+								</label>
+					    			<input type="zoom" class="form-control" id="ZoUnidade" name="ZoUnidade" 
+					    				data-zoom="{
+										'displayKey':'Undds_Nome',
+										'datasetId':'DS_Unidade',
+										'maximumSelectionLength':'1',
+										'placeholder':'Escolha a Unidade',
+										
+										'fields':[
+											{
+											'field':'Undds_Nome',
+											'label':'Unidade',
+											'standard':'true',
+											'search':'true'
+											}
+			
+										]
+									}"
+					    			/>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							
+							<div class="col-md-2">
+								<label>
+									Matricula do Exame<span class="required text-danger"><strong>*</strong></span>
+								</label>
+								<input type="text" class="form-control" id="TxtMatriculaExame" name="TxtMatriculaExame" maxlength=30>
+							</div>
+							<div class="col-md-3"><br>
+			    				<label>
+			    					Nome do paciente<span class="required text-danger"></span><strong>*</strong></span>
+			    				</label>
+			    				<input type="text" class="form-control" id="TxtNomePaciente" name="TxtNomePaciente" />
+			    			</div>
+							
+							
+							<div class="col-md-2"><br>
+								<label>
+									Modalidade
+								</label>
+								
+				    				<input type="text" class="form-control" id="ZoModalidadeExame" name="ZoModalidadeExame" readonly="readonly"/>
+				    			
+							</div>				
+							<div class="col-md-5"><br>
+								<label>
+									Exame<span class="required text-danger"><strong>*</strong></span>
+								</label>
+									<input type="zoom" class="form-control" id="ZoExame" name="ZoExame" 
+									data-zoom="{
+										'displayKey':'Procd_Nome',
+										'datasetId':'DsExames',
+										'maximumSelectionLength':'1',
+										'placeholder':'Escolha o Exame',
+										'fields':[
+											{
+											'field':'Procd_Nome',
+											'label':'Exame',
+											'standard':'true',
+											'search':'true'
+											},
+											{
+												'field':'Modld_Sigla',
+												'label':'Modalidade',
+												'standard':'true',
+												'search':'true'
+												}
+			
+										]
+									}"
+									/>
+			    			
+			    				
+			    			</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-6">
+								<label>
+									Médico 1º Laudo<strong>*</strong></span>
+								</label>
+								
+									<input type="zoom" class="form-control" id="ZoMedicos" name="ZoMedicos" 
+										data-zoom="{
+											'displayKey':'NOME',
+											'datasetId':'ds_Medico', 
+											'maximumSelectionLength':'1',
+											'placeholder':'Médico 1º Laudo',
+											
+											'fields':[
+												{
+												'field':'NOME',
+												'label':'NOME',
+												'standard':'true',
+												'search':'true'
+												}
+			
+											]
+										}"
+									/>
+									
+	    						
+							</div>
+							<div class="col-md-4">
+								<label>
+									Teor da divergencia<strong>*</strong></span>
+								</label>
+								<select class="form-control" name="slcTeor" id="slcTeor">
+								<option value="0"></option>
+								<option value="1">Erro no cadastro</option>
+								<option value="2">Falta conclusão / Opinião </option>
+								<option value="3">Falta de assinatura médica</option>
+								<option value="4">Falta de comparativo</option>
+								<option value="5">Falta titulo / titulo inadequado</option>
+								<option value="6">Frases duplicadas</option>
+								<option value="7">Informação de contraste discrepante</option>
+								<option value="8">Lateralidade</option>
+								<option value="9">Mamografia liberada como 80</option>
+								<option value="10">Prostata em paciente feminino</option>
+								<option value="11">Relatorio em branco</option>
+								<option value="12">Titulo diferente do pedido</option>
+								<option value="13">Utero em paciente masculino</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+			    				<label>
+			    					Data do Exame<strong>*</strong></span>
+			    				</label>
+			    				<input type="text" class="form-control" id="TxtDataExame" name="TxtDataExame" />
+			    			</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-md-12">
+								<label>
+									Observação<strong>*</strong></span>
+								</label>
+								<textarea type="text" class="form-control" id="TxtObs" name="TxtObs" rows="5" maxlength=300> </textarea>
+							</div>
+						</div>
+					</div>
+					
+				</div> 
+	
+				<!--Final do Bloco A-->
+				
+				<div class="panel panel-default"  id="B" name="B">
+					<div class="panel-heading">NCL</div>
+					<div class="panel-body">
+						
+							<div class="row">
+
+							<div class="col-md-3">
+							<label>
+								Classificação notificante<span class="required text-danger"><strong>*</strong></span>
+							</label>
+							
+							<div>
+								<input type="checkbox" name="optionsRadios1" id="optionsRadios1">&nbsp; &nbsp;1-Medico do Paciente
+							</div>
+							<div>
+								<input type="checkbox" name="optionsRadios2" id="optionsRadios2">&nbsp; &nbsp;2-Paciente
+							</div>
+							<div>
+								<input type="checkbox" name="optionsRadios3" id="optionsRadios3">&nbsp; &nbsp;3-Transplante 
+							</div>
+							<div>
+								<input type="checkbox" name="optionsRadios4" id="optionsRadios4">&nbsp; &nbsp;4-IAMSPE Auditoria
+							</div>
+							<div>
+								<input type="checkbox" name="optionsRadios5" id="optionsRadios5" disable value="5">&nbsp; &nbsp;5- Medico Goias 
+							</div>
+							
+						</div>
+
+								
+								
+								<div class="col-md-2">
+									<label>
+										Telefone<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtTelefoneUnidade" name="TxtTelefoneUnidade" mask="(00) 0000-0000">
+								</div>
+								
+								<div class="col-md-3">
+									<label>
+										Notificante<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtNotificanteName" name="TxtNotificanteName" maxlength=50>
+								</div>
+								
+								
+								
+								
+								<div class="col-md-4">
+									<label>
+										Unidade<span class="required text-danger"><strong>*</strong></span>
+									</label>
+						    			<input type="zoom" class="form-control" id="ZoUnidadeBlocoB" name="ZoUnidadeBlocoB" 
+						    			data-zoom="{
+											'displayKey':'Undds_Nome',
+											'datasetId':'DS_Unidade',
+											'maximumSelectionLength':'1',
+											'placeholder':'Escolha a Unidade',
+											
+											'fields':[
+												{
+												'field':'Undds_Nome',
+												'label':'Unidade',
+												'standard':'true',
+												'search':'true'
+												}
+				
+											]
+										}"
+						    			/>
+								</div>
+								
+								
+								
+								
+								
+								
+								<div class="col-md-2" id="RgPaciente">
+									<label>
+										RG do paciente<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtRgPaciente" name="TxtRgPaciente" mask="00.000.000-A">
+								</div>
+								<div class="col-md-2" id="RgNotificante">
+									<label>
+										RG do Notificante<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtRgNotificante" name="TxtRgNotificante" mask="00.000.000-A">
+								</div>
+								<div class="col-md-2" id="CrmMedico">
+									<label>
+										CRM Medico<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtCRM" name="TxtCRM" >
+								</div>
+							</div>
+							<br>
+							<div class="row">
+								
+								<div class="col-md-2">
+									<label>
+										Matricula do Exame<span class="required text-danger"><strong>*</strong></span>
+									</label>
+									<input type="text" class="form-control" id="TxtMatriculaExame_A" name="TxtMatriculaExame_A" maxlength=30>
+								</div>
+								<div class="col-md-3"><br>
+				    				<label>
+				    					Nome do paciente<strong>*</strong></span>
+				    				</label>
+				    				<input type="text" class="form-control" id="TxtNomePaciente_A" name="TxtNomePaciente_A" />
+				    			</div>
+								<div class="col-md-2"><br>
+									<label>
+										Modalidade 
+									</label>
+									
+					    				<input type="text" class="form-control" id="ZoModalidadeExame_A" name="ZoModalidadeExame_A" readonly="readonly"/>
+					    			
+								</div>				
+								<div class="col-md-5"><br>
+									<label>
+										Exame<span class="required text-danger"><strong>*</strong></span>
+									</label>
+										<input type="zoom" class="form-control" id="ZoExame_A" name="ZoExame_A" 
+										data-zoom="{
+											'displayKey':'Procd_Nome',
+											'datasetId':'DsExames',
+											'maximumSelectionLength':'1',
+											'placeholder':'Escolha o Exame',
+											'fields':[
+												{
+												'field':'Procd_Nome',
+												'label':'Exame',
+												'standard':'true',
+												'search':'true'
+												},
+												{
+													'field':'Modld_Sigla',
+													'label':'Modalidade',
+													'standard':'true',
+													'search':'true'
+													}
+				
+											]
+										}"
+										/>
+				    			</div>
+				    			
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-8">
+									<label>
+										Médico 1º Laudo<strong>*</strong></span>
+									</label>
+									<input type="zoom" class="form-control" id="ZoMedicos_A" name="ZoMedicos_A" 
+										data-zoom="{
+											'displayKey':'NOME',
+											'datasetId':'ds_Medico',
+											'maximumSelectionLength':'1',
+											'placeholder':'Médico 1º Laudo',
+											
+											'fields':[
+												{
+												'field':'NOME',
+												'label':'NOME',
+												'standard':'true',
+												'search':'true'
+												}
+			
+											]
+										}"
+									
+									/>
+								</div>
+								<div class="col-md-2">
+				    				<label>
+				    					Data do Exame<strong>*</strong></span>
+				    				</label>
+				    				<input type="text" class="form-control" id="TxtDataExame_A" name="TxtDataExame_A" />
+				    			</div>
+							</div>
+							<br>
+							<div class="row">
+								<div class="col-md-12">
+									<label>
+										Observação<strong>*</strong></span>
+									</label>
+									<textarea type="text" class="form-control" id="TxtObs2" name="TxtObs2" rows="5" maxlength=300> </textarea>
+								</div>
+							</div>
+					</div>
+				</div>
+				<!--Final do Bloco B-->
+				
+				<div class="panel panel-default"  id="C" name="C">
+					<div class="panel-heading">NAD Sem Laudo</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3">
+								<label>
+									Houve troca de imagem?<strong>*</strong></span>
+								</label>
+								<div class="radio">
+								   <label>
+								   		<input type="radio" name="RdTrocaImagem" id="optionsRadios1" value="sim" >
+									   Sim
+								    </label>
+								</div>
+								<div class="radio">
+								   <label>
+								   		<input type="radio" name="RdTrocaImagem" id="optionsRadios2" value="nao" >
+									    Não
+								    </label>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<label>
+									Teor da divergencia<strong>*</strong></span>
+								</label>
+								<textarea type="text" class="form-control" id="TxtAreaTeorDivergencia" name="TxtAreaTeorDivergencia" rows="3" maxlength=300> </textarea>
+							</div>
+							
+						</div>
+						<br>
+						<div class="row">
+						
+							<div class="col-md-4">
+								<label>
+									Unidade<span class="required text-danger"><strong>*</strong></span>
+								</label>
+				    			<input type="zoom" class="form-control" id="ZoUnidade_C" name="ZoUnidade_C" 
+				    			data-zoom="{
+											'displayKey':'Undds_Nome',
+											'datasetId':'DS_Unidade',
+											'maximumSelectionLength':'1',
+											'placeholder':'Escolha a Unidade',
+											
+											'fields':[
+												{
+												'field':'Undds_Nome',
+												'label':'Unidade',
+												'standard':'true',
+												'search':'true'
+												}
+				
+											]
+										}"
+				    			/>
+							</div>
+							
+							<div class="col-md-2">
+			    				<label>
+			    					Data da Solicitação
+			    				</label>
+			    				<input type="text" class="form-control" id="TxtDataSolic_C" name="TxtDataSolic_C" readonly="readonly" />
+		    				</div>
+		    				<div class="col-md-4">
+			    				<label>
+			    					Nome do Paciente<strong>*</strong></span>
+			    				</label>
+			    				<input type="text" class="form-control" id="TxtNomePaciente_C" name="TxtNomePaciente_C" maxlength=80/>
+		    				</div>
+		    				<div class="col-md-2">
+		    					<label>
+		    						Matricula<strong>*</strong></span>
+		    					</label>
+		    					<input type="text" class="form-control" id="TxtMatricula_C" name="TxtMatricula_C" maxlength=30>
+		    				</div>	
+		    			</div>
+		    			<br>
+		    			<div class="row">
+	
+		    				<div class="col-md-4">
+		    					<label>
+		    						Exame com alteração<strong>*</strong></span>
+		    					</label>
+		    					<input type="text" class="form-control" id="TxtExameAlteracao_C" name="TxtExameAlteracao_C" maxlength=50>
+		    				</div>
+		    				<div class="col-md-2">
+		    					<label>
+		    						Data do Exame<strong>*</strong></span>
+		    					</label>
+		    					<input type="text" class="form-control" id="TxtDataExame_C" name="TxtDataExame_C" >
+	    					</div>
+	    					<div class="col-md-4">
+		    					<label>
+		    						Nome do solicitante<strong>*</strong></span>
+		    					</label>
+		    					<input type="text" class="form-control" id="TxtNomeSolicitante_C" name="TxtNomeSolicitante_C" maxlength=50 >
+	    					</div>
+	    					<div class="col-md-2">
+		    					<label>
+									Setor<strong>*</strong></span>
+								</label>
+								<div class="radio">
+									  <label>
+									   	<input type="radio" name="RdSetor_C" id="RdSetorAdm_C" value="adm" >
+										 Administrativo
+									  </label>
+								</div>
+								<div class="radio">
+									 <label>
+									   	<input type="radio" name="RdSetor_C" id="RdSetorEnf_C" value="enf" >
+									   	Enfermagem
+									  </label>
+								</div>
+								<div class="radio">
+									 <label>
+									   	<input type="radio" name="RdSetor_C" id="RdSetorTec_C" value="tec" >
+									   	Tecnico
+									  </label>
+								 </div>
+								 <div class="radio">
+									 <label>
+									   	<input type="radio" name="RdSetor_C" id="RdSetorMed_C" value="med" >
+									   	Medico
+									  </label>
+								 </div>
+	    					</div>
+		    			</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<div class="tab-pane" id="Medica">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default"  id="D" name="D">
+				<div class="panel-heading">NAD Com Laudo \ NAD Sem Laudo</div>
+				<div class="panel-body"> 
+					<div class="row">
+						<div class="col-md-4" >
+							<label>
+								Responsavel
+							</label>
+								<input type="text" class="form-control" id="TxtResponsavel_Nad" name="TxtResponsavel_Nad" readonly="readonly" >
+						</div>
+						<div class="col-md-4" >
+							<label>
+								Status da solicitação NAD
+							</label>
+							<select class="form-control" name="slcTeorNad1" id="slcTeorNad1">
+								<option vlaue="0"></option>
+								<option vlaue="1">Laudo cancelado / Emitido novo laudo</option>
+								<option vlaue="2">Revisado</option>
+								<option vlaue="3">Corrigido pela TI</option>
+								<option vlaue="4">Manter laudo</option>
+								<option vlaue="5">Pendente</option>
+								<option vlaue="6">Outros</option>
+								
+							</select>
+							
+								
+						</div>
+						<div class="col-md-4" >
+							<label>
+								Teor do questionamento 
+							</label>
+							<select class="form-control" name="slcTeorNad" id="slcTeorNad">
+								<option value="0"></option>
+								<option value="1">Questiona cadastro</option>
+								<option value="2">Questiona falta de assinatura</option>
+								<option value="3">Questiona falta de comparativo</option>
+								<option value="4">Questiona falta de opiniao</option>
+								<option value="5">Questiona fonte</option>
+								<option value="6">Questiona lateralidade</option>
+								<option value="7">Questiona titulo</option>
+								<option value="8">Questiona utilização do contraste</option>
+								<option value="9">Titulo difere do pedido</option>
+								<option value="10">Mamografia liberado com B0</option>
+								<option value="11">Questiona laudo</option>
+								<option value="12">Outros</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6">
+							<label>
+								Médico 2º Laudo <!--Compa não obrigatorio-->
+							</label>
+						
+						<input type="zoom" class="form-control" id="ZoMedicos_Nad" name="ZoMedicos_Nad" 
+							data-zoom="{
+								'displayKey':'NOME',
+								'datasetId':'ds_Medico',
+								'maximumSelectionLength':'1',
+								'placeholder':'Médico 2º Laudo',
+								
+								'fields':[
+									{
+									'field':'NOME',
+									'label':'NOME',
+									'standard':'true',
+									'search':'true'
+									}
+
+								]
+							}"
+
+						/>
+								
+							
+						</div>
+						<div class="col-md-6">
+							<label>
+								Motivo
+							</label>
+							<input type="text" class="form-control" id="TxtMotivoNad" name="TxtMotivoNad"  maxlength=80>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default"  id="E" name="E">
+				<div class="panel-heading">NCL</div>
+				<div class="panel-body"> 
+					<div class="row">
+						<div class="col-md-4" >
+							<label>
+								Responsavel
+							</label>
+								<input type="text" class="form-control" id="TxtResponsavel_Ncl" name="TxtResponsavel_Ncl" readonly="readonly" >
+						</div>
+						
+						<div class="col-md-3" >
+							<label>
+								Status da solicitação NCL
+							</label>
+								<select class="form-control" id="SlcStatusNcl" name="SlcStatusNcl">
+									<option value="0"></option>
+									<option value="1">Pendente</option>
+									<option value="2">Revisado</option>
+									<option value="3">Outros</option>
+								</select>
+						</div>
+						<div class="col-md-5">
+							<label>
+								Médico 2º Laudo <!--Compa não obrigatorio-->
+							</label>
+							
+								<input type="zoom" class="form-control" id="ZoMedicos_Ncl" name="ZoMedicos_Ncl" 
+								data-zoom="{
+									'displayKey':'NOME',
+									'datasetId':'ds_Medico',
+									'maximumSelectionLength':'1',
+									'placeholder':'Médico 2º Laudo',
+									
+									'fields':[
+										{
+										'field':'NOME',
+										'label':'NOME',
+										'standard':'true',
+										'search':'true'
+										}
+	
+									]
+								}"
+								>
+								
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tab-pane" id="CoordMedica">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default"  id="F" name="F">
+				<div class="panel-heading">NAD Com Laudo</div>
+				<div class="panel-body"> 
+					<div class="row">
+						<div class="col-md-4" >
+							<label>
+								Classificação da Solicitação
+							</label>
+							<select class="form-control" id="SlcClassificaSolicitacao" name="SlcClassificaSolicitacao">
+								<option value="0"></option>
+								<option value="1">Alteração conceitual</option>
+								<option value="2">Alteração de digitação</option>
+								<option value="3">Alteração de expressão</option>
+								<option value="4">Alteração de lateralidade</option>
+								<option value="5">Alteração de mascara</option>
+								<option value="6">Erro da unidade</option>
+								<option value="7">Não procedente</option>
+								<option value="8">Sem Classificação</option>
+								<option value="9">Sem erro</option>
+								<option value="12">Outro<s/option>
+							</select>
+						
+						</div>
+						<div class="col-md-4">
+						
+							<label>
+								Confimar envio de e-mail
+							</label>
+							<select class="form-control" id="RdEmailNad" name="RdEmailNad">
+								<option value="0"></option>
+								<option value="1">Não</option>
+								<option value="2">Sim</option>
+							</select>
+							
+							<!--<div class="radio">
+							    <label>
+								    <input type="radio" name="RdEmailNad" id="RdEmailNadSim" value="sim" >
+								    Sim
+							    </label>
+							</div>
+							<div class="radio">
+							    <label>
+								    <input type="radio" name="RdEmailNad" id="RdEmailNadNao" value="nao" checked >
+								    NÃ£o
+							    </label>
+							</div>-->
+						</div>
+						<div class="col-md-4">
+							<label>
+								Ã um evento critico?
+							</label>
+							<div class="radio">
+							    <label>
+								    <input type="radio" name="RdeventoNad" id="RdeventoNadSim" value="sim" >
+								    Sim
+							    </label>
+							</div>
+							<div class="radio">
+							    <label>
+								    <input type="radio" name="RdeventoNad" id="RdeventoNadNao" value="nao" checked >
+								    NÃ£o
+							    </label>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<label>
+								Analise
+							</label>
+							<textarea type="text" class="form-control" id="TxtAnaliseNad" name="TxtAnaliseNad" rows="8" maxlength=500> </textarea>	
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="panel panel-default"  id="G" name="G">
+				<div class="panel-heading">NCL</div>
+				<div class="panel-body"> 
+					<div class="row">
+						<div class="col-md-4">
+							<label>	
+								Teor do questionamento
+							</label>
+								<select class="form-control" name="slcTeorQuestionamentoNcl" id="slcTeorQuestionamentoNcl">
+									<option value="0"></option>
+									<option value="1">Questiona cadastro</option>
+									<option value="2">Questiona falta de assinatura</option>
+									<option value="3">Questiona falta de comparativo</option>
+									<option value="4">Questiona falta de opiniao</option>
+									<option value="5">Questiona fonte</option>
+									<option value="6">Questiona lateralidade</option>
+									<option value="7">Questiona titulo</option>
+									<option value="8">Questiona utilização do contraste</option>
+									<option value="9">Titulo difere do pedido</option>
+									<option value="10">Mamografia liberado com B0</option>
+									<option value="11">Questiona laudo</option>
+									<option value="12">Outros</option>
+								</select>
+
+
+
+						
+						
+						</div>
+						<div class="col-md-8">
+							<label>
+								Motivo
+							</label>
+							<textarea type="text" class="form-control" id="TxtMotivoNcl" name="TxtMotivoNcl" rows="3" maxlength=300> </textarea>
+												
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-4" >
+							<label>
+								Classificação da Solicitação
+							</label>
+							<select class="form-control" id="SlcClassificaSolicitacaoNcl" name="SlcClassificaSolicitacaoNcl">
+								<option value="0"></option>
+								<option value="1">Alteração conceitual</option>
+								<option value="2">Alteração de digitação</option>
+								<option value="3">Alteração de expressão</option>
+								<option value="4">Alteração de lateralidade</option>
+								<option value="5">Alteração de mascara</option>
+								<option value="6">Erro da unidade</option>
+								<option value="7">NÃ£o procedente</option>
+								<option value="8">Sem Classificação</option>
+								<option value="9">Sem erro</option>
+								<option value="10">Outros</option>
+							</select>
+						
+						</div>
+						<div class="col-md-4">
+							
+							<label>
+								Confimar envio de e-mail
+							</label>
+							<select  type="text" class="form-control" id="RdEmailNcl" name="RdEmailNcl">
+								<option value="0"></option>
+								<option value="1">Não</option>
+								<option value="2">Sim</option>
+								
+							</select>
+						</div>
+						<div class="col-md-4">
+							<label>
+								Ã um evento critico?
+							</label>
+							<div class="radio">
+							    <label>
+								    <input type="radio" name="RdeventoNcl" id="RdeventoNclSim" value="sim" >
+								    Sim
+							    </label>
+							</div>
+							<div class="radio">
+							    <label>
+								    <input type="radio" name="RdeventoNcl" id="RdeventoNclNao" value="nao" checked >
+								    NÃ£o
+							    </label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<label>
+								Analise
+							</label>
+							<textarea type="text" class="form-control" id="TxtAnaliseNcl" name="TxtAnaliseNcl" rows="8" maxlength=500> </textarea>	
+						</div>
+					</div>
+	
+				</div>
+			</div>
+			
+			
+			
+			
+			
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</div>
+	
+
+
+
+
+</form>
+</div>
+</body>
+</html>
